@@ -1,21 +1,28 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, TextInput,TouchableOpacity,Text } from 'react-native';
+import { StyleSheet, View, TextInput,TouchableOpacity,Text,StatusBar } from 'react-native';
 
 
 export default class LoginForm extends Component {
     render() {
         return (
-            <View>
+            
+            <View style={styles.container}>
+                <StatusBar barStyle='light-content'/>
                 <TextInput
                 placeholder="Username"
                 placeholderTextColor="black"
+                onSubmitEditing={()=>this.passwordInput.focus()}
                 returnKeyType="next"
                 style={styles.input}></TextInput>
+
                 <TextInput
                 placeholder="Password"
+                autoCapitalize='none'
+                autoCorrect={false}
                 placeholderTextColor="black"
                 secureTextEntry
                 returnKeyType="go"
+                ref={(input=>this.passwordInput=input)}
                 style={styles.input}></TextInput>
                 <TouchableOpacity style={styles.buttoncontainer}>
                     <Text style={styles.buttonText}>Login</Text>
@@ -28,7 +35,8 @@ export default class LoginForm extends Component {
 const styles=StyleSheet.create(
     {
         container:{
-            padding:30
+            padding:10
+
         },
         input:{
         height:40 ,
